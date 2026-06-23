@@ -1,144 +1,322 @@
 # VEIL
-**Your life already contains the data needed to help you become better. VEIL exists to help you use it.**
 
-## Vision
+### Behavioral Intelligence Authentication Layer
+VEIL is a privacy-first continuous authentication system that verifies user identity through behavioral patterns rather than relying solely on passwords, OTPs, or biometrics.
 
-Every digital interaction leaves behind fragments of information:
-
-- Conversations
-- Notes
-- Tasks
-- Documents
-- Browsing activity
-- Learning progress
-- Daily habits
-- Decisions and outcomes
-
-Most of this information is forgotten, scattered across applications, or locked away in systems that do not understand the individual behind the data.
-
-VEIL aims to change that.
-
-Our vision is to build a **personal intelligence system** that continuously learns from a user's digital life—with explicit consent—and transforms raw information into understanding, memory, and actionable guidance.
-
-Instead of forcing users to repeatedly explain themselves to software, software should learn to understand the user.
+Traditional authentication systems verify identity only once during login. Once a device is unlocked, an attacker who gains access can often operate freely. VEIL introduces an additional layer of security by continuously evaluating whether the current user is behaving like the legitimate account owner.
 
 ---
 
 ## The Problem
 
-Human memory is limited.
+Modern authentication methods have significant limitations:
 
-We forget:
+- Passwords can be stolen or leaked.
+- OTPs can be intercepted through phishing and social engineering.
+- Devices can remain unlocked and accessible after login.
+- Authentication is usually a one-time event rather than a continuous process.
+- Most systems cannot detect account takeover after successful login.
 
-- What we learned
-- Why we made decisions
-- Patterns in our behavior
-- Mistakes we repeatedly make
-- Knowledge accumulated over years
-
-Meanwhile, existing AI systems are largely stateless. They can answer questions, but they rarely understand the complete context of an individual's life, goals, knowledge, and history.
-
-This creates a gap between information and intelligence.
+As a result, unauthorized users may continue operating within a session without triggering any security mechanisms.
 
 ---
 
-## Our Approach
+## Our Vision
 
-VEIL acts as a continuously evolving personal knowledge layer.
+VEIL aims to transform authentication from a single event into a continuous process.
 
-With the user's permission, it can collect and organize information from multiple sources, including:
+Instead of asking:
 
-- Conversations
-- Files
-- Notes
-- System activity
-- Learning resources
-- Personal projects
+> "Did the user successfully log in?"
 
-The goal is not surveillance.
+VEIL continuously asks:
 
-The goal is understanding.
+> "Does the current behavior still match the legitimate user?"
 
-VEIL builds a structured representation of:
+By analyzing behavioral patterns during normal device usage, VEIL creates a dynamic behavioral identity profile that can detect suspicious activity even after authentication has already occurred.
 
-- What the user knows
-- What the user is learning
-- What the user is trying to achieve
-- How the user works
-- How the user evolves over time
+---
+
+## How VEIL Works
+
+VEIL learns the unique interaction patterns of a user over time.
+
+Examples of behavioral signals include:
+
+### Keyboard Behavior
+
+- Key hold duration
+- Time between keystrokes
+- Typing rhythm
+- Pause patterns
+- Backspace frequency
+- Error correction habits
+- Shortcut usage behavior
+
+### Mouse and Touch Behavior
+
+- Movement speed
+- Cursor trajectory
+- Acceleration patterns
+- Click frequency
+- Scroll rhythm
+- Interaction hesitation points
+
+### Usage Behavior
+
+- Navigation patterns
+- Application switching habits
+- Session interaction style
+- Time-of-day behavior
+
+These signals are combined to create a behavioral fingerprint that is difficult to imitate consistently.
 
 ---
 
 ## Privacy First
 
-Privacy is a fundamental requirement, not an afterthought.
+Privacy is a core design principle of VEIL.
 
-VEIL operates on three principles:
+VEIL is designed to understand *how* users interact, not *what* they are doing.
 
-1. **User Ownership**
-   - The user's data belongs to the user.
-2. **Explicit Consent**
-   - Data is collected only after user approval.
-3. **Transparency**
-   - Users should always know what is being stored and why.
+### What VEIL Does NOT Collect
 
-Our objective is not to maximize data collection.
+- Passwords
+- Messages
+- Emails
+- Documents
+- Browser content
+- Screen recordings
+- Personal text data
 
-Our objective is to maximize usefulness while preserving trust.
+### What VEIL Collects
+
+- Timing intervals
+- Behavioral patterns
+- Interaction rhythm
+- Movement characteristics
+- Statistical metadata
+
+A simple way to understand VEIL is:
+
+> VEIL stores how you interact, not what you interact with.
+
+All data collection requires explicit user consent.
+
+Users retain full control over:
+
+- Starting data collection
+- Stopping data collection
+- Viewing stored data
+- Exporting data
+- Deleting data
 
 ---
 
-## What We Are Building
+## Risk-Based Authentication
 
-We envision VEIL becoming:
+VEIL does not make binary decisions.
 
-### A Living Memory
-A system that remembers important information across months and years.
+Instead of:
 
-### A Learning Companion
-A system that understands what a user already knows and helps close knowledge gaps.
+```
+Same User
+Not Same User
+```
 
-### A Decision Assistant
-A system that provides context-aware recommendations based on historical patterns and goals.
+VEIL produces a risk score:
 
-### A Personal Knowledge Graph
-A continuously evolving map of experiences, projects, interests, skills, and relationships between ideas.
+```
+Risk Score: 12%
+```
 
-### A Digital Extension of the User
-Not a replacement for human thinking, but an amplifier of it.
+```
+Risk Score: 68%
+```
+
+```
+Risk Score: 91%
+```
+
+Security actions depend on the level of risk.
+
+Risk Score | Action
+---|---
+0-30% | Continue normally
+30-60% | Silent monitoring
+60-80% | Request re-authentication
+80-100% | Restrict access or lock session
+
+This creates a more flexible and realistic security model.
+
+---
+
+## Context-Aware Authentication
+
+Human behavior naturally changes.
+
+People type differently when:
+
+- Tired
+- Focused
+- Under pressure
+- Using a different device
+- Working in different environments
+
+VEIL is designed to understand these contexts.
+
+Instead of maintaining a single profile, VEIL can learn multiple behavioral states:
+
+```
+User
+├── Normal Mode
+├── Fast Work Mode
+├── Tired Mode
+├── Mobile Profile
+└── Desktop Profile
+```
+
+This allows the system to distinguish between legitimate behavioral variation and genuinely suspicious activity.
+
+---
+
+## Adaptive Learning
+
+Behavior changes over time.
+
+VEIL continuously adapts to long-term behavioral evolution while maintaining security.
+
+To prevent attackers from poisoning the model:
+
+- Learning occurs only during high-confidence sessions.
+- Suspicious behavior is excluded from training.
+- Profile updates happen gradually.
+- Historical behavior remains part of the model.
+
+This allows VEIL to evolve with the user while remaining resistant to manipulation.
+
+---
+
+## System Architecture
+
+```
+User Interaction
+        │
+        ▼
+Behavior Collector
+        │
+        ▼
+Feature Extraction Engine
+        │
+        ▼
+Behavior Database
+        │
+        ▼
+Behavioral Model
+        │
+        ▼
+Risk Scoring Engine
+        │
+        ▼
+Security Response Layer
+```
+
+---
+
+## MVP Roadmap
+
+### Phase 1 — Behavioral Data Collection
+Build a system-wide collection agent that gathers:
+
+- Keyboard metadata
+- Mouse metadata
+- Interaction timing information
+
+Store behavioral features in a local database.
+
+### Phase 2 — Behavioral Fingerprinting
+Train machine learning models using collected behavioral data.
+
+Create a unique behavioral profile for each user.
+
+### Phase 3 — Continuous Authentication
+Perform real-time anomaly detection and generate live risk scores.
+
+### Phase 4 — Context Awareness
+Support multiple behavioral profiles for different operating contexts.
+
+### Phase 5 — Multi-Factor Fusion
+Combine:
+
+- Behavioral biometrics
+- Device fingerprinting
+- Environmental context
+- Traditional authentication methods
+
+to create a comprehensive trust score.
+
+---
+
+## Potential Applications
+
+### Banking and FinTech
+Detect account takeover even after login.
+
+### Enterprise Security
+Protect sensitive systems from insider misuse.
+
+### Online Examinations
+Detect unauthorized users during assessments.
+
+### Healthcare Systems
+Protect access to medical records.
+
+### Government Infrastructure
+Provide continuous identity verification for sensitive operations.
+
+### High-Security Workstations
+Monitor access to critical systems and confidential data.
+
+---
+
+## Technology Stack
+
+### Data Collection
+
+- Python
+- pynput
+- keyboard
+
+### Backend
+
+- FastAPI
+
+### Database
+
+- SQLite
+- PostgreSQL (future)
+
+### Machine Learning
+
+- Scikit-learn
+- Isolation Forest
+- One-Class SVM
+
+### Dashboard
+
+- React
+- Chart.js
 
 ---
 
 ## Long-Term Goal
 
-The future of AI is not simply bigger models.
+Authentication today is largely static.
 
-The future is systems that understand individuals.
+VEIL envisions a future where identity verification becomes continuous, adaptive, intelligent, and privacy-preserving.
 
-We believe every person should have access to an intelligence layer that:
+Rather than trusting a login event, systems should continuously verify trust throughout a session.
 
-- Learns continuously
-- Respects privacy
-- Preserves knowledge
-- Accelerates learning
-- Improves decision-making
-- Evolves alongside its user
+VEIL is a step toward that future.
 
-VEIL is our step toward that future.
-
----
-
-## Our Mission
-
-**To build a privacy-conscious personal intelligence system that transforms fragmented life data into long-term memory, understanding, and meaningful action.**
-
-## Project Structure
-
-This repository is centered on the VEIL vision. Implementation details are intentionally deferred to dedicated documents:
-
-- `ARCHITECTURE.md` → technical design
-- `PRIVACY.md` → consent and security model
-- `ROADMAP.md` → Phase 0, Phase 1, Phase 2 development plan
-- `CONTRIBUTING.md` → contributor guidelines
-
-Focusing the README on vision and philosophy helps this project communicate clearly to judges, contributors, and future users.
+This version positions VEIL as a serious cybersecurity and behavioral biometrics project rather than just a machine-learning demo, which is usually more attractive to judges, mentors, and potential collaborators.
